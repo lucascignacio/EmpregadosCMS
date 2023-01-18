@@ -16,7 +16,7 @@
                 </div>
             @endif
 
-         
+
            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
@@ -36,8 +36,12 @@
                     <td>{{$key+1}}</td>
                     <td>{{$department->name}}</td>
                     <td>{{$department->description}}</td>
-                    <td><a href="{{route('departments.edit',[$department->id])}}"><i class="fas fa-edit"></i></a></td>
                     <td>
+                        @if(isset(auth()->user()->role->permission['name']['department']['can-edit']))
+                        <a href="{{route('departments.edit',[$department->id])}}"><i class="fas fa-edit"></i></a></td>
+                    @endif
+                    <td>
+                        @if(isset(auth()->user()->role->permission['name']['department']['can-delete']))
                         <form id="delete-form{{$department->id}}" method="POST"
                             action="{{route('departments.destroy', [$department->id])}}">@csrf
                             {{method_field('DELETE')}}
@@ -51,6 +55,7 @@
 								">
                                 <i class="fas fa-trash"></i>
 							</a>
+                        @endif
                     </td>
                 
                 
