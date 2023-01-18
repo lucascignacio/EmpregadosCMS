@@ -117,7 +117,9 @@
             </div>
             <br>
             <div class="form-group">
-                <button class="btn btn-primary " type="submit">Update</button>
+                @if(isset(auth()->user()->role->permission['name']['user']['can-edit']))
+                    <button class="btn btn-primary " type="submit">Update</button>
+                @endif
             </div>
         </div>
       

@@ -49,8 +49,13 @@
                     <td>{{$user->start_from}}</td>
                     <td>{{$user->address}}</td>
                     <td>{{$user->mobile_number}}</td>
-                    <td><a href="{{route('users.edit',[$user->id])}}"><i class="fas fa-edit"></i></a></td>
                     <td>
+                        @if(isset(auth()->user()->role->permission['name']['user']['can-edit']))
+                        <a href="{{route('users.edit',[$user->id])}}"><i class="fas fa-edit"></i></a>
+                        @endif
+                    </td>
+                    <td>
+                        @if(isset(auth()->user()->role->permission['name']['user']['can-delete']))
                         <form id="delete-form{{$user->id}}" method="POST"
                             action="{{route('users.destroy', [$user->id])}}">@csrf
                             {{method_field('DELETE')}}
@@ -64,6 +69,7 @@
 								">
                                 <i class="fas fa-trash"></i>
 							</a>
+                            @endif
                     </td>
                 
                 
