@@ -36,8 +36,13 @@
                     <td>{{$key+1}}</td>
                     <td>{{$role->name}}</td>
                     <td>{{$role->description}}</td>
-                    <td><a href="{{route('roles.edit',[$role->id])}}"><i class="fas fa-edit"></i></a></td>
                     <td>
+                        @if(isset(auth()->user()->role->permission['name']['role']['can-edit']))
+                        <a href="{{route('roles.edit',[$role->id])}}"><i class="fas fa-edit"></i></a>
+                        @endif
+                    </td>
+                    <td>
+                        @if(isset(auth()->user()->role->permission['name']['role']['can-delete']))
                         <form id="delete-form{{$role->id}}" method="POST"
                             action="{{route('roles.destroy', [$role->id])}}">@csrf
                             {{method_field('DELETE')}}
@@ -51,8 +56,8 @@
 								">
                                 <i class="fas fa-trash"></i>
 							</a>
+                        @endif
                     </td>
-                
                 
                 </tr>
                 @endforeach
@@ -60,8 +65,6 @@
                 <td>No roles to display</td>
                 @endif
                
-               
-              
             </tbody>
         </table>
         </div>
