@@ -77,7 +77,7 @@
                     </div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsestaff" aria-expanded="false" aria-controls="collapsestaff">
                         <div class="sb-nav-link-icon"><i class="fas fa-pencil-alt"></i></div>
-                        Staff leave
+                        Staff Leave
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapsestaff" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -87,6 +87,21 @@
                             @endif
                             @if(isset(auth()->user()->role->permission['name']['leave']['can-list']))
                                 <a class="nav-link" href="{{route('leaves.index')}}">View</a>
+                            @endif
+                        </nav>
+                    </div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseNotice" aria-expanded="false" aria-controls="collapseNotice">
+                        <div class="sb-nav-link-icon"><i class="fas fa-pencil-alt"></i></div>
+                        Staff Notice
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseNotice" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            @if(isset(auth()->user()->role->permission['name']['notice']['can-add']))
+                                <a class="nav-link" href="{{route('notices.create')}}">Create</a>
+                            @endif
+                            @if(isset(auth()->user()->role->permission['name']['notice']['can-list']))
+                                <a class="nav-link" href="{{route('notices.index')}}">View</a>
                             @endif
                         </nav>
                     </div>
