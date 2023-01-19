@@ -50,5 +50,13 @@ trait PermissionTrait
             return abort(401);
         };
 
+        //for notice
+        if(!isset(auth()->user()->role->permission['name']['notice']['can-add']) && \Route('notices.create')){
+            return abort(401);
+        };
+        if(!isset(auth()->user()->role->permission['name']['notice']['can-list']) && \Route('notices.index')){
+            return abort(401);
+        };
+
     }
 }
