@@ -50,7 +50,7 @@ class LeaveController extends Controller
         $data['message'] = '';
         $data['status'] = 0;
         Leave::create($data);
-        return redirect()->back()->with('message', 'Leave Created');
+        return redirect()->back()->with('message', 'Leave Created')->status(201);
     }
 
     /**

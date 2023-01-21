@@ -44,7 +44,7 @@ class NoticeController extends Controller
         ]);
 
         Notice::create($request->all());
-        return redirect()->route('notices.index')->with('message', 'Notices created');
+        return redirect()->route('notices.index')->with('message', 'Notices created')->status(201);
     }
 
     /**

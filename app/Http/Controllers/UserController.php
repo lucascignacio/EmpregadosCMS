@@ -61,7 +61,7 @@ class UserController extends Controller
         $data['image'] = $image;
         $data['password'] = bcrypt($request->password);
         User::create($data);
-        return redirect()->back()->with('message', 'User created successfully.');
+        return redirect()->back()->with('message', 'User created successfully.')->status(201);
     }
 
     /**

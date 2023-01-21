@@ -43,7 +43,7 @@ class DepartmentController extends Controller
 
         $data = $request->all();
         Department::create($data);
-        return redirect()->back()->with('message', 'Department created successfully.');
+        return redirect()->back()->with('message', 'Department created successfully.')->status(201);
     }
 
     /**

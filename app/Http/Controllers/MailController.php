@@ -41,6 +41,6 @@ class MailController extends Controller
                 Mail::to($user->email)->send(new Sendmail($details));
             }
         }
-        return redirect()->back()->with('message', 'Email sent');
+        return redirect()->back()->with('message', 'Email sent')->status(201);
     }
 }

@@ -41,7 +41,7 @@ class RoleController extends Controller
         ]);
 
         Role::create($request->all());
-        return redirect()->back()->with('message', 'Role created successfully.');
+        return redirect()->back()->with('message', 'Role created successfully.')->status(201);
     }
 
     /**
